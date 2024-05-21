@@ -1,12 +1,14 @@
-framer
-axios
-mui
-react-router
-react-hook-form
-recoil
-Material-react-table
-axios
-framer-motion
-
+mui- components
+react-router- to navigate 
+react-hook-form- for form
+recoil - alternative of redux
+Material-react-table - to show table
+axios- api calling
+framer-motion - animation
+motion - date and time functions
 prettier
 	to use prettier - npx prettier . --write
+
+sass
+module bundler - vite
+react-error-boundary to show errors in a meaningful way.

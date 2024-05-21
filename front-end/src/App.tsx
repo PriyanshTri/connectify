@@ -1,10 +1,10 @@
 import "./App.sass";
+import Login from "./components/login/Login";
 
 function App() {
   return (
     <div className="hello">
-      Priyansh
-      <p>hello</p>
+      <Login/>
     </div>
   );
 }
