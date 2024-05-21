@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import jwt from 'jsonwebtoken';
 
 //User Schema
 const userSchema = mongoose.Schema({
@@ -20,7 +21,10 @@ const userSchema = mongoose.Schema({
     password:{
         type: String,
         required: [true, 'Password is required']
-    }
+    },
+    refreshToken: {
+        type: String,
+    },
 })
 
 export const user = mongoose.model("User", userSchema)
