@@ -1,0 +1,36 @@
+{
+  "name": "connectify-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Connectify application.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "clean": "rm -rf node_modules && npm cache clean --force",
+    "reinstall": "npm run clean && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PriyanshTri/connectify.git"
+  },
+  "author": "Himanshu and Priyansh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PriyanshTri/connectify/issues"
+  },
+  "homepage": "https://github.com/PriyanshTri/connectify#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "moongose": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "prettier": "3.2.5"
+  }
+}
