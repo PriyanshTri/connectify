@@ -1,0 +1,12 @@
+framer
+axios
+mui
+react-router
+react-hook-form
+recoil
+Material-react-table
+axios
+framer-motion
+
+prettier
+	to use prettier - npx prettier . --write
