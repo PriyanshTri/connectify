@@ -5,16 +5,16 @@ import PrivateRoute from "./components/PrivateRoute";
 import HomePage from "./components/HomePage";
 
 function App() {
-  const isAuthenticated = false;
+  const isAuthenticated = true; // Simulate authentication state
+
   return (
     <Routes>
-      <Route path="/login" Component={Login} />
-      {/* private route page is not working, try to debug it and find the solution(error in console) */}
-      {/* <PrivateRoute */}
+      <Route path="/login" element={<Login />} />
       <Route
         path="/"
-        component={HomePage}
-        isAuthenticated={isAuthenticated}
+        element={
+          <PrivateRoute isAuthenticated={isAuthenticated} component={HomePage} path={""}/>
+        }
       />
     </Routes>
   );
