@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./Login.sass";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -13,6 +14,16 @@ const Login = () => {
   const onSubmit = (data: any) => {
     console.log(data);
   };
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    const isAuthenticated = true; // Simulate authentication state
+    if(isAuthenticated){
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div
@@ -22,18 +33,6 @@ const Login = () => {
       <div className="form-container sign-up-container">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Create Account</h1>
-          <div className="social-container">
-            <a href="#" className="social">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="social">
-              <i className="fab fa-google-plus-g"></i>
-            </a>
-            <a href="#" className="social">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-          <span>or use your email for registration</span>
           <input
             {...register("name", { required: true })}
             type="text"
@@ -58,18 +57,6 @@ const Login = () => {
       <div className="form-container sign-in-container">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Sign in</h1>
-          <div className="social-container">
-            <a href="#" className="social">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="social">
-              <i className="fab fa-google-plus-g"></i>
-            </a>
-            <a href="#" className="social">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-          <span>or use your account</span>
           <input
             {...register("email", { required: true })}
             type="email"
@@ -83,7 +70,9 @@ const Login = () => {
           />
           {errors.password && <p>Password is required</p>}
           <a href="#">Forgot your password?</a>
-          <button type="submit">Sign In</button>
+          <button type="submit" onClick={handleLoginClick}>
+            Sign In
+          </button>
         </form>
       </div>
       <div className="overlay-container">
