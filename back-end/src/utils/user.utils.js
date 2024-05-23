@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 export const generateAccessAndRefereshTokens = async (userId) =>{
     try {
         const currentUser = await user.findById(userId)
-        console.log('cu',currentUser)
         const accessToken = generateAccessToken(currentUser)  
         const refreshToken = generateRefreshToken(currentUser)
 
