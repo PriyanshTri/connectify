@@ -7,6 +7,7 @@ import { generateAccessAndRefereshTokens } from "../utils/user.utils.js";
 //Controller for the register user functionlity.
 export const registerUser = async (req, res) => {
   const {email, username, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
     // Check if the email already exists
@@ -14,8 +15,6 @@ export const registerUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user
     const newUser = new user({
@@ -25,10 +24,37 @@ export const registerUser = async (req, res) => {
     });
     await newUser.save();
 
-    res.status(200).json(newUser);
+    // Exclude the password from the response
+    const { password,...userWithoutPassword } = newUser.toObject();
+
+    console.log(userWithoutPassword)
+    res.status(200).json(userWithoutPassword);
   } catch (error) {
     console.error('Api Error',error);
     res.status(500).json({ message: "Server Error" });
+  }
+};
+
+export const ifUserNameExists = async (req, res) => {
+  //logic to check if username exists
+  const { username, email } = req.body;
+
+  try {
+    const usernameExists = await User.findOne({ username });
+    const emailExists = await User.findOne({ email });
+
+    if (usernameExists && emailExists) {
+      res.status(400);
+      throw new Error("Username and email already exists");
+    } else if (usernameExists) {
+      res.status(400);
+      throw new Error("Username already exists");
+    } else if (emailExists) {
+      res.status(400);
+      throw new Error("Email already exists");
+    }
+  } catch (error) {
+    console.error(error);
   }
 };
 
