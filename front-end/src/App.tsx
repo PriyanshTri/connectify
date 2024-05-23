@@ -1,7 +1,7 @@
 import "./App.sass";
 import Login from "./components/login/Login";
 import { Routes, Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/authentication/PrivateRoute";
 import HomePage from "./components/HomePage";
 import PageNotFound from "./components/PageNotFound";
 
@@ -11,6 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Login />} />
       <Route
         path="/"
         element={

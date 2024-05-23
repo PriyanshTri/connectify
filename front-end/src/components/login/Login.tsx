@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "./Login.sass";
 import { useNavigate } from "react-router";
+import "./Login.sass";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -24,6 +24,20 @@ const Login = () => {
       navigate("/login");
     }
   };
+
+  //When Signup page is opened it will change URL.
+  const handleNavigationURL = () => {
+    if(isSignUp) {
+      navigate('/signup')
+    }else {
+      navigate('/login')
+    }
+  }
+
+  //UseEffect to handle the changing of URL from signup to login or vice versa.
+  useEffect(()=> {
+    handleNavigationURL()
+  },[isSignUp])
 
   return (
     <div
@@ -51,7 +65,7 @@ const Login = () => {
             placeholder="Password"
           />
           {errors.password && <p>Password is required</p>}
-          <button type="submit">Sign Up</button>
+          <button type="submit" onClick={handleNavigationURL}>Sign Up</button>
         </form>
       </div>
       <div className="form-container sign-in-container">
