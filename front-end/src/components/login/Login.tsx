@@ -1,38 +1,31 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from "recoil";
+import { registerUser } from "../../store/user/userActions";
+import { useAppDispatch } from "../../hooks/dispatchHook";
 import "./Login.sass";
-import { apiCallTrigger, registerUserData, userProfileSelector } from "../../recoil-store/user";
-
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
-  const [signUpSuccessful, setSignUpSuccessful] = useState<boolean>(false);
-  
-  const [profileData, setProfileData] = useState({})
-  const [formData, setFormData] = useRecoilState(registerUserData);
-  const  [shouldTriggerAPI, setShouldTriggerAPI] = useRecoilState(apiCallTrigger);
-  const data = useRecoilValueLoadable(userProfileSelector)
+  const [formData, setFormData] = useState({
+    email: '',
+    username: '',
+    password: ''
+  });((
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const {userData} = (store)
 
   const handleInputChange = (e: any) => {
-    setFormData((currentFormData) => ({
+    setFormData((currentFormData: any) => ({
       ...currentFormData,
        [e.target.name]: e.target.value,
      }));
   };
-
-  useEffect(()=> {
-    setProfileData(data)
-  },[data])
-
-  useEffect(()=> {
-    console.log('profileData', profileData)
-  },[profileData])
-
-  const onSubmit = (e: any) => {
+  
+  const onSubmit = async (e: any) => {
     e.preventDefault(); // Prevent form from refreshing the page
-    setShouldTriggerAPI(true)
+   dispatch(registerUser(formData))
   };
 
   const handleLoginClick = () => {
