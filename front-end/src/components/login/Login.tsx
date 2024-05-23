@@ -10,11 +10,9 @@ const Login = () => {
     email: '',
     username: '',
     password: ''
-  });((
+  });
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
-  const {userData} = (store)
 
   const handleInputChange = (e: any) => {
     setFormData((currentFormData: any) => ({
