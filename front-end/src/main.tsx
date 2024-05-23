@@ -1,16 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
-import { RecoilRoot } from "recoil"
+import { Provider } from "react-redux";
+import { applyMiddleware, configureStore, createStore } from "@reduxjs/toolkit";
 import App from "./App.tsx";
+import rootReducer from "./store/rootReducer.ts";
+import { thunk } from "redux-thunk";
 import "./index.css";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RecoilRoot>
+     <Provider store={store}>
       <Router>
         <App />
       </Router>
-    </RecoilRoot>
+      </Provider>
   </React.StrictMode>
 );
