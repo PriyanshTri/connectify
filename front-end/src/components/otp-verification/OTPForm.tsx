@@ -14,8 +14,6 @@ const OTPForm = () => {
 
   //Call API when the component mounts.
   useEffect(() => {
-    console.log('otp', otp)
-    debugger;
     if(otp === null) {
       dispatch(generateOTPForEmails(userData))
     }

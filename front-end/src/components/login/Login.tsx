@@ -59,9 +59,6 @@ const Login = () => {
     handleNavigationURL();
   }, [isSignUp]);
 
-  useEffect(() => {
-    console.log(signUpComplete);
-  }, [signUpComplete]);
   return (
 
     !signUpComplete ? 
