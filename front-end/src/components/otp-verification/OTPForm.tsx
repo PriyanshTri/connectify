@@ -1,11 +1,20 @@
-import {  useState, useRef } from 'react';
+import {  useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../main';
+import CentralizedButton from '../centralized-button/CentralizedButton';
 import './OTPForm.scss';
+import { useNavigate } from 'react-router';
 
-const OTPForm = () => {
+export type  OTPFormProps = {
+  setSignUpComplete:(_:boolean) => void;
+  setIsSignUp:(_:boolean) => void;
+}
+
+const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
   const [otps, setOTP] = useState(['', '', '', '', '', '']);
+  const [message, setMessage] = useState<string>('')
   const emailRefs = useRef([]);
+  const navigate= useNavigate();
   const userData = useSelector((state: RootState) => state?.user?.userData);
   const otp = useSelector((state: RootState) => state?.user?.otp);
 
@@ -42,27 +51,26 @@ const OTPForm = () => {
   };
 
   const renderResult = () => {
-    const finalKey = otps.join('');
+    const finalKey = otps.join("");
     const isValid = finalKey.length === 6;
     if (isValid && finalKey === otp?.otp) {
-      // If OTP matches, show success message
-      return (
-        <div className="result">
-          <p id="_otp" className="_ok">
-            Successfully verified. Please login. Welcome to Connectify.
-          </p>
-        </div>
-      );
+      setMessage("Successfully verified. Welcome to Connectify. Please Login With Your Credentials.");
     } else {
-      return (
-        <div className="result">
-          <p id="_otp" className="_notok">
-            {finalKey}
-          </p>
-        </div>
-      );
+      setMessage("Oops ! Invalid OTP . Please Try Again.");
     }
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (message?.includes('Successfully verified')) {
+        setSignUpComplete(false);
+        navigate('/login');
+        setIsSignUp(false);
+      }
+    }, 1500);
+  
+    return () => clearTimeout(timeoutId);
+  }, [message]);
 
   return (
     <div className="otp-form">
@@ -72,7 +80,8 @@ const OTPForm = () => {
         <p className="msg">Please enter OTP to verify</p>
       </div>
       <div className="otp-input-fields">{renderOTPFields()}</div>
-      {renderResult()}
+      <CentralizedButton buttonText={'Validate OTP'} context='otp-verify-button' onClick={renderResult}/>
+      <div className='user-message'>{message !== '' ? message : ''}</div>    
     </div>
   );
 };

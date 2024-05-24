@@ -1,13 +1,13 @@
-import "./App.sass";
-import Login from "./components/login/Login";
 import { useNavigate } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { Routes, Route } from "react-router-dom";
+import Login from "./components/login/Login";
 import PrivateRoute from "./components/authentication/PrivateRoute";
-import HomePage from "./components/HomePage";
-import PageNotFound from "./components/PageNotFound";
+import HomePage from "./components/homepage/HomePage";
+import PageNotFound from "./components/error-components/PageNotFound";
 import NavBar from "./components/navbar/NavBar";
 import ErrorFallback from "./components/errorboundary/ErrorFallback";
+import "./App.scss";
 
 function App() {
   const isAuthenticated = true; // Simulate authentication state

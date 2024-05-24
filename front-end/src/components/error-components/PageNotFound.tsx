@@ -1,6 +1,6 @@
 import { Button, Container, Typography, Box, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
-import LostAstronaut from "../assets/lost-astronaut.svg";
+import LostAstronaut from "../../assets/lost-astronaut.svg";
 
 const PageNotFound = () => {
   return (

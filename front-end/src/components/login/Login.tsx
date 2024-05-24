@@ -34,7 +34,7 @@ const Login = () => {
   }, [userData]);
 
   useEffect(() => {
-    if (userData && userData?.["email"] !== "") {
+    if (userData && userData?.["email"] !== "" && signUpComplete) {
       dispatch(generateOTPForEmails(userData));
     }
   }, [signUpComplete]);
@@ -153,7 +153,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-    : <OTPForm/>
+    : <OTPForm setSignUpComplete={setSignUpComplete} setIsSignUp={setIsSignUp}/>
   );
 };
 

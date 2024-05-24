@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
 });
 
 export const sendEmail = expressAsyncHandler(async (req, res) => {
-  const { email } = req.body;
+  const { email, username } = req.body;
   if(!email) {
     return res.status(404).json({message: 'Invalid Email!'})
   }
@@ -39,7 +39,7 @@ export const sendEmail = expressAsyncHandler(async (req, res) => {
       <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
   
         <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-          <h2 style="color: #333333; margin-bottom: 20px;">Hi, </h2>
+          <h2 style="color: #333333; margin-bottom: 20px;">Hi, ${username}</h2>
           <p style="color: #333333;">We're excited to have you on board with Connectify!</p>
           <p style="color: #333333;">Your OTP for verification is: <strong>${otp}</strong></p>
           <p style="color: #333333;">Please use this OTP to complete your verification process.</p>
