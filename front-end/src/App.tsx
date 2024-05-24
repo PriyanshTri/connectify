@@ -17,24 +17,29 @@ function App() {
   };
 
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={handleErrorReset}>
-      <NavBar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Login />} />
-        <Route
-          path="/"
-          element={
-            <PrivateRoute
-              isAuthenticated={isAuthenticated}
-              component={HomePage}
-              path={""}
-            />
-          }
-        />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </ErrorBoundary>
+    <div className="app">
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={handleErrorReset}
+      >
+        <NavBar />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute
+                isAuthenticated={isAuthenticated}
+                component={HomePage}
+                path={""}
+              />
+            }
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </ErrorBoundary>
+    </div>
   );
 }
 
