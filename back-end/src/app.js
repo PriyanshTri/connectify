@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieparser from 'cookie-parser';
 import bodyParser from 'body-parser'
 import { sendEmail } from "./controllers/service.controller.js";
+import { ifUserNameExists } from "./controllers/user.controller.js";
 
 //Routes imports
 
@@ -23,4 +24,5 @@ app.use(bodyParser.json());
 
 app.use('/api/v1/users', userRouter) //userRoutes(register or login)
 app.post('/api/v1/signup-verification', sendEmail) 
+app.post('/api/v1/users/userValidation', ifUserNameExists) //Calling Controller without routes to avoid redudnat routes.
 export { app };

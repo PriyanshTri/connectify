@@ -1,27 +1,70 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateOTPForEmails, registerUser } from "../../store/user/userActions";
+import { generateOTPForEmails, loginUser, registerUser, validateUserNameAndEmail } from "../../store/user/userActions";
 import { useAppDispatch } from "../../hooks/dispatchHook";
-import "./Login.sass";
 import { useSelector } from "react-redux";
 import { RootState } from "../../main";
 import OTPForm from "../otp-verification/OTPForm";
+import "./Login.scss";
+import { debounce } from "../../hooks/debounceHook";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [signUpComplete, setSignUpComplete] = useState<boolean>(false);
+  const [emailMessage, setEmailMessage] = useState<string>('');
+  const [userNameMessage, setUserNameMessage] = useState<string>('');
   const [formData, setFormData] = useState({
     email: "",
     username: "",
     password: "",
   });
+
+  //To accomodate user data while login.
+  const [loginData, setLoginData] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const userData = useSelector((state: RootState) => state?.user?.userData);
+  const loginUserData = useSelector((state: RootState) => state?.user?.loginUserData);
+  const validationMessage = useSelector((state: RootState) => state?.user?.validationMessages);
 
   const handleInputChange = (e: any) => {
+    console.log('e', e)
     setFormData((currentFormData: any) => ({
+      ...currentFormData,
+      [e.target.name]: e?.target?.value,
+    }));
+  };
+
+  //UseEffect manages to render the helper text messages if the username or email is taken.
+  useEffect(() => {
+    if (validationMessage?.['message']) {
+      const text = validationMessage?.['message']?.split('.')
+
+      // Check if both email and username are present
+      if (formData?.email && formData?.username) {
+        setUserNameMessage(text[0]);
+        setEmailMessage(text?.[1]);
+      } 
+      // Check if only email is present
+      else if (formData?.email) {
+        setEmailMessage(text?.[1]);
+      } 
+      // Check if only username is present
+      else if (formData?.username) {
+        setUserNameMessage(text?.[0]);
+      }
+    }
+  }, [validationMessage, formData.email, formData.username]);
+  
+
+  const handleLoginData = (e: any) => {
+    setLoginData((currentFormData: any) => ({
       ...currentFormData,
       [e.target.name]: e?.target?.value,
     }));
@@ -33,24 +76,38 @@ const Login = () => {
     }
   }, [userData]);
 
+  //If the user is valid , naviagate it to main screen page
+  useEffect(() => {
+    if (loginUserData && loginUserData?.['accessToken']) {
+      navigate('/home') //NOTE - Currently route is not decided for main UI page. It's just for checking.
+    }
+  }, [loginUserData]);
+
   useEffect(() => {
     if (userData && userData?.["email"] !== "" && signUpComplete) {
       dispatch(generateOTPForEmails(userData));
     }
   }, [signUpComplete]);
 
+//UseEffect sending an action call to get status from api if username or email exists.
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (formData.email !== "" || formData.username !== "") {
+        dispatch(validateUserNameAndEmail(formData));
+      }
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [formData]);
+
   const onSubmit = async (e: any) => {
     e.preventDefault(); // Prevent form from refreshing the page
     dispatch(registerUser(formData));
   };
 
-  const handleLoginClick = () => {
-    const isAuthenticated = true; // Simulate authentication state
-    if (isAuthenticated) {
-      navigate("/");
-    } else {
-      navigate("/login");
-    }
+ //Function to be called when user clicks sign in button.
+  const handleLoginClick = (e: any) => {
+    e.preventDefault();
+    dispatch(loginUser(loginData))
   };
 
   const handleNavigationURL = () => {
@@ -82,6 +139,7 @@ const Login = () => {
             type="text"
             placeholder="User Name"
           />
+          <div className="validation-message-email">{userNameMessage !== '' ? userNameMessage : ''}</div> 
           <input
             name="email"
             value={formData.email || ""}
@@ -89,6 +147,7 @@ const Login = () => {
             type="email"
             placeholder="Email"
           />
+          <div className="validation-message-email">{emailMessage !== '' ? emailMessage : ''}</div>         
           <input
             name="password"
             value={formData.password || ""}
@@ -101,24 +160,24 @@ const Login = () => {
       </div>
 
       <div className="form-container sign-in-container">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleLoginClick}>
           <h1>Sign in</h1>
           <input
-            name="email or username"
-            value={formData.email || formData.username || ""}
-            onChange={handleInputChange}
+            name="email"
+            value={loginData.email || ''}
+            onChange={handleLoginData}
             type="text"
             placeholder="Email or Username"
           />
           <input
             name="password"
-            value={formData.password || ""}
-            onChange={handleInputChange}
+            value={loginData.password || ""}
+            onChange={handleLoginData}
             type="password"
             placeholder="Password"
           />
           <a href="#">Forgot your password?</a>
-          <button type="submit" onClick={handleLoginClick}>
+          <button type="submit">
             Sign In
           </button>
         </form>

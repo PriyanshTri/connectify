@@ -26,8 +26,6 @@ export const registerUser = async (req, res) => {
 
     // Exclude the password from the response
     const { password,...userWithoutPassword } = newUser.toObject();
-
-    console.log(userWithoutPassword)
     res.status(200).json(userWithoutPassword);
   } catch (error) {
     console.error('Api Error',error);
@@ -36,37 +34,41 @@ export const registerUser = async (req, res) => {
 };
 
 export const ifUserNameExists = async (req, res) => {
-  //logic to check if username exists
+  // Logic to check if username exists
   const { username, email } = req.body;
-
   try {
-    const usernameExists = await User.findOne({ username });
-    const emailExists = await User.findOne({ email });
+    const usernameExists = await user.findOne({ username });
+    const emailExists = await user.findOne({ email });
+    let message = '';
 
-    if (usernameExists && emailExists) {
-      res.status(400);
-      throw new Error("Username and email already exists");
-    } else if (usernameExists) {
-      res.status(400);
-      throw new Error("Username already exists");
-    } else if (emailExists) {
-      res.status(400);
-      throw new Error("Email already exists");
+    if (usernameExists) {
+      message += "Username already exists. ";
+    } else {
+      message += "Username is available. ";
     }
+
+    if (emailExists) {
+      message += "Email already exists.";
+    } else {
+      message += "Email is available.";
+    }
+
+    res.status(200).json({ message });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ error: 'An unexpected error occurred' });
   }
 };
 
+
 //Controller for the login.
 export const loginUser = async (req, res) => {
-
   const { email, username, password } = req.body;
 
-  if(!email && !username){
+  if(!email){
     res.status(401).json({message: 'Invalid Credentials.'})
   }
-
+  
   try {
      const currentUser = await user.findOne({
         $or: [{username}, {email}]
