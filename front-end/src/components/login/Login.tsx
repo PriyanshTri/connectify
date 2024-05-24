@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../store/user/userActions";
+import { generateOTPForEmails, registerUser } from "../../store/user/userActions";
 import { useAppDispatch } from "../../hooks/dispatchHook";
 import "./Login.sass";
 import { useSelector } from "react-redux";
@@ -32,6 +32,12 @@ const Login = () => {
       setSignUpComplete(true);
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (userData && userData?.["email"] !== "") {
+      dispatch(generateOTPForEmails(userData));
+    }
+  }, [signUpComplete]);
 
   const onSubmit = async (e: any) => {
     e.preventDefault(); // Prevent form from refreshing the page

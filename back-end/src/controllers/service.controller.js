@@ -24,11 +24,32 @@ export const sendEmail = expressAsyncHandler(async (req, res) => {
 
   const otp = generateOTP();
 
-  var mailOptions = {
-    from: 'process.env.SMTP_MAIL',
+  const mailOptions = {
+    from: process.env.SMTP_MAIL,
     to: email,
     subject: 'OTP Verification',
-    html: `<p>Your OTP is ${otp}</p>`
+    html: `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OTP Email</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
+  
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+          <h2 style="color: #333333; margin-bottom: 20px;">Hi, </h2>
+          <p style="color: #333333;">We're excited to have you on board with Connectify!</p>
+          <p style="color: #333333;">Your OTP for verification is: <strong>${otp}</strong></p>
+          <p style="color: #333333;">Please use this OTP to complete your verification process.</p>
+          <p style="color: #333333;">If you didn't request this OTP, please ignore this email.</p>
+          <p style="color: #333333;">Best regards,<br> The Connectify Team</p>
+        </div>
+  
+      </body>
+      </html>
+    `
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
