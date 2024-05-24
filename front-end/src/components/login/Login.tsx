@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../main";
 import OTPForm from "../otp-verification/OTPForm";
 import "./Login.scss";
-import { debounce } from "../../hooks/debounceHook";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
