@@ -1,16 +1,23 @@
 import "./App.sass";
 import Login from "./components/login/Login";
+import { useNavigate } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import { Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/authentication/PrivateRoute";
 import HomePage from "./components/HomePage";
 import PageNotFound from "./components/PageNotFound";
 import NavBar from "./components/navbar/NavBar";
+import ErrorFallback from "./components/errorboundary/ErrorFallback";
 
 function App() {
   const isAuthenticated = true; // Simulate authentication state
+  const history = useNavigate();
+  const handleErrorReset = () => {
+    history("/");
+  };
 
   return (
-    <>
+    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={handleErrorReset}>
       <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -27,7 +34,7 @@ function App() {
         />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </>
+    </ErrorBoundary>
   );
 }
 

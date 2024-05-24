@@ -35,6 +35,14 @@ function AppAppBar({ mode, toggleColorMode }: any) {
       setOpen(false);
     }
   };
+  const handleErrorThrow = () => {
+    return new Error("Error thrown from NavBar.tsx");
+  }
+  const handleKeyDown = (event: { key: string; }) => {
+    if (event.key === "Enter" || event.key === " ") {
+      handleErrorThrow();
+    }
+  }
 
   return (
     <div>
@@ -54,9 +62,12 @@ function AppAppBar({ mode, toggleColorMode }: any) {
               }}
             >
               <img
+                role="button"
                 src={ConnectifyLogo}
                 style={{ height: "32px"}}
                 alt="Connectify Logo"
+                onClick={handleErrorThrow}
+                onKeyDown={handleKeyDown}
               />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <MenuItem

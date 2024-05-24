@@ -19,7 +19,8 @@
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "beautiful-react-hooks": "^3.0.0",
-    "framer-motion": "^11.2.5",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.6",
     "material-react-table": "^2.13.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",
@@ -34,7 +35,8 @@
     "redux-thunk": "^3.1.0",
     "sass": "^1.77.2",
     "sass-loader": "^14.2.1",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
