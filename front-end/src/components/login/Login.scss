@@ -9,6 +9,10 @@
   width: 90vw;
   max-width: 100%;
   min-height: 480px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   .form-container form {
     background: #fff;
@@ -114,7 +118,7 @@
   }
 
   .overlay {
-    background: linear-gradient(to top left, #a3b5d6,#515a82) no-repeat 0 (0 / cover);    
+    background: linear-gradient(to top left, #897eff, #e8e7ff) no-repeat 0 0 / cover;    
     position: relative;
     left: -100%;
     height: 100%;

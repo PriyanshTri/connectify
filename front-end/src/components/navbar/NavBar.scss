@@ -5,6 +5,7 @@
   background: rgba(255, 255, 255, 0.25) !important;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+  box-shadow: unset !important;
   :hover {
     background-color: unset;
   }
@@ -17,7 +18,7 @@
 
   .connectify-logo {
     margin-right: 10px;
-    width: 100px;
+    width: 50px;
     border-radius: 10px;
   }
 }

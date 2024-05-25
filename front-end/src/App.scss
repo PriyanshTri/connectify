@@ -3,9 +3,7 @@ body {
     font-family: Inter, sans-sarif !important;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     height: 100vh;
     background-color: #f0f0f0; /* Light gray background */
   }

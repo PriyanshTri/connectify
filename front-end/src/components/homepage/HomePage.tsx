@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { World } from "../Globe/Globe.js";
+import { World } from "../globe/Globe.js";
 import {
   GlobalConfigData,
   SampleArcsData,
-} from "../../constants/GlobeConstants/Globe.js";
+} from "../../constants/globe-constants/Globe.js";
 import "./HomePage.scss";
 import { Box, Container } from "@mui/material";
 
@@ -20,4 +20,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
