@@ -88,10 +88,6 @@
     .MuiFormControl-root {
       margin-bottom: 20px;
     }
-
-    .MuiInputLabel-root {
-      margin-top: 5px;
-    }
   }
 
   .sign-up-container {
@@ -101,6 +97,9 @@
     width: 50%;
     z-index: 1;
     opacity: 0;
+    .MuiFormControl-root {
+      margin-bottom: 20px;
+    }
   }
 
   .overlay-container {
@@ -178,10 +177,10 @@
   .hello-friends {
     font-size: 40px;
     font-weight: 600;
+    padding-left: 20px;
   }
 
   .hello-text {
-    color: gray;
     padding-top: 20px;
     padding-bottom: 40px;
   }
@@ -190,6 +189,27 @@
     font-size: 40px;
     font-weight: 600;
     padding: 0 0 20px 0;
+  }
+
+  .welcome-back {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  .create-account {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .tick-icon {
+    color: green;
+    margin-bottom: -7px;
+  }
+
+  .error-icon {
+    color: red;
+    margin-bottom: -7px;
   }
 }
 

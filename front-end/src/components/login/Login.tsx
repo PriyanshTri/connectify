@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
 import { generateOTPForEmails, loginUser, registerUser, validateUserNameAndEmail } from "../../store/user/userActions";
 import { useAppDispatch } from "../../hooks/dispatchHook";
 import { useSelector } from "react-redux";
@@ -99,6 +101,14 @@ const Login = () => {
     return () => clearTimeout(timeout);
   }, [formData]);
 
+  useEffect(() => {
+    if(formData?.email === '') {
+      setEmailMessage('');
+    }else if(formData?.username === '') {
+      setUserNameMessage('');
+    }
+  }, [formData]);
+
   const onSubmit = async (e: any) => {
     e.preventDefault(); // Prevent form from refreshing the page
     dispatch(registerUser(formData));
@@ -130,24 +140,25 @@ const Login = () => {
     >
       <div className="form-container sign-up-container">
         <form onSubmit={onSubmit}>
-        <Typography className="create-account">Create Account</Typography>
+        <Typography className="create-account">Create Your Account</Typography>
             <TextField
               fullWidth
-              label="User Name"
+              label='User Name'
               name="username"
-              value={formData.username || ""}
+              value={formData?.username || ""}
               onChange={handleInputChange}
-              error={Boolean(userNameMessage)}
-              helperText={userNameMessage}
+              error={Boolean(userNameMessage?.toLocaleLowerCase()?.includes('already exists'))}
+              helperText={userNameMessage!== '' && formData?.username !== '' ? !userNameMessage?.toLocaleLowerCase()?.includes('already exists')? <><CheckCircleIcon className="tick-icon"/>{userNameMessage}</> : <><ErrorIcon className="error-icon"/>{userNameMessage}</> : ''}
             />
             <TextField
               fullWidth
               label="Email"
               name="email"
-              value={formData.email || ""}
+              value={formData?.email || ""}
               onChange={handleInputChange}
-              error={Boolean(emailMessage)}
-              helperText={emailMessage}
+              error={Boolean(emailMessage?.toLocaleLowerCase()?.includes('already exists'))}
+              helperText={emailMessage!== '' && formData?.email !== '' ? !emailMessage?.toLocaleLowerCase()?.includes('already exists')? <><CheckCircleIcon className="tick-icon"/>{emailMessage}</> : <><ErrorIcon className="error-icon"/>{emailMessage}</> : ''}
+
             />
             <TextField
               fullWidth
@@ -188,8 +199,8 @@ const Login = () => {
       <div className="overlay-container">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
-            <Typography className="welcome-back">Welcome Back!</Typography>
-            <Typography className="welcome-message">To keep connected with us please login with your personal info</Typography>
+            <Typography className="welcome-back">Feeling Deja Vu? Sign In To Revisit Your Social Kingdom!</Typography>
+            <Typography className="welcome-message">Keep Connected With Your Socio-Verse.</Typography>
             <Button
               className="ghost"
               id="signIn"
@@ -199,8 +210,8 @@ const Login = () => {
             </Button>
           </div>
           <div className="overlay-panel overlay-right">
-            <Typography className="hello-friends">No More Hopping, No More Stopping. Connectify Keeps Your Social Life Popping. </Typography>
-            <Typography className="hello-text">Wanna Unleash Your Inner Social Butterfly ? Create Your Account Now. </Typography>
+            <Typography className="hello-friends">FOMO Got You Down? Create Your Account & Turn That Frown Upside Down! </Typography>
+            <Typography className="hello-text">New faces only! The party's on the other side. Sign Up Now!</Typography>
             <Button
               className="ghost"
               id="signUp"
