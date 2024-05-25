@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateOTPForEmails, loginUser, registerUser, validateUserNameAndEmail } from "../../store/user/userActions";
 import { useAppDispatch } from "../../hooks/dispatchHook";
 import { useSelector } from "react-redux";
 import { RootState } from "../../main";
 import OTPForm from "../otp-verification/OTPForm";
+import { Typography, TextField, Button } from "@mui/material";
 import "./Login.scss";
 
 const Login = () => {
@@ -122,7 +123,6 @@ const Login = () => {
   }, [isSignUp]);
 
   return (
-
     !signUpComplete ? 
     <div
       className={`container ${isSignUp ? "right-panel-active" : ""}`}
@@ -130,83 +130,85 @@ const Login = () => {
     >
       <div className="form-container sign-up-container">
         <form onSubmit={onSubmit}>
-          <h1>Create Account</h1>
-          <input
-            name="username"
-            value={formData.username || ""}
-            onChange={handleInputChange}
-            type="text"
-            placeholder="User Name"
-          />
-          <div className="validation-message-email">{userNameMessage !== '' ? userNameMessage : ''}</div> 
-          <input
-            name="email"
-            value={formData.email || ""}
-            onChange={handleInputChange}
-            type="email"
-            placeholder="Email"
-          />
-          <div className="validation-message-email">{emailMessage !== '' ? emailMessage : ''}</div>         
-          <input
-            name="password"
-            value={formData.password || ""}
-            onChange={handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button type="submit">Sign Up</button>
+        <Typography className="create-account">Create Account</Typography>
+            <TextField
+              fullWidth
+              label="User Name"
+              name="username"
+              value={formData.username || ""}
+              onChange={handleInputChange}
+              error={Boolean(userNameMessage)}
+              helperText={userNameMessage}
+            />
+            <TextField
+              fullWidth
+              label="Email"
+              name="email"
+              value={formData.email || ""}
+              onChange={handleInputChange}
+              error={Boolean(emailMessage)}
+              helperText={emailMessage}
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              value={formData.password || ""}
+              onChange={handleInputChange}
+              type="password"
+            />
+          <Button type="submit" variant="contained">Sign Up</Button>
         </form>
       </div>
 
+      <div className="vertical-line"></div>
+
       <div className="form-container sign-in-container">
         <form onSubmit={handleLoginClick}>
-          <h1>Sign in</h1>
-          <input
-            name="email"
-            value={loginData.email || ''}
-            onChange={handleLoginData}
-            type="text"
-            placeholder="Email or Username"
-          />
-          <input
-            name="password"
-            value={loginData.password || ""}
-            onChange={handleLoginData}
-            type="password"
-            placeholder="Password"
-          />
-          <a href="#">Forgot your password?</a>
-          <button type="submit">
-            Sign In
-          </button>
+        <Typography className="sign-in-text">Sign In And Get On-Board!</Typography>
+            <TextField
+              fullWidth
+              label="Email or Username"
+              name="email"
+              value={loginData.email || ''}
+              onChange={handleLoginData}
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              name="password"
+              value={loginData.password || ""}
+              onChange={handleLoginData}
+              type="password"
+            />
+            <Button type="submit" variant="contained" className="sign-in-button">Connectify Now</Button>
         </form>
       </div>
 
       <div className="overlay-container">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us please login with your personal info
-            </p>
-            <button
+            <Typography className="welcome-back">Welcome Back!</Typography>
+            <Typography className="welcome-message">To keep connected with us please login with your personal info</Typography>
+            <Button
               className="ghost"
               id="signIn"
               onClick={() => setIsSignUp(false)}
             >
               Sign In
-            </button>
+            </Button>
           </div>
           <div className="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button
+            <Typography className="hello-friends">No More Hopping, No More Stopping. Connectify Keeps Your Social Life Popping. </Typography>
+            <Typography className="hello-text">Wanna Unleash Your Inner Social Butterfly ? Create Your Account Now. </Typography>
+            <Button
               className="ghost"
               id="signUp"
+              variant="contained"
               onClick={() => setIsSignUp(true)}
             >
-              Sign Up
-            </button>
+              Join the Fun
+            </Button>
           </div>
         </div>
       </div>

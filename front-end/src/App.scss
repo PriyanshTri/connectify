@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 body {
-    box-sizing: border-box;
+    font-family: Inter, sans-sarif !important;
     margin: 0;
-    padding: 0 ;
-    border: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Light gray background */
+  }
+
+  .MuiInputLabel-root  {
+    font-family: "Inter" !important;
 }
-   
