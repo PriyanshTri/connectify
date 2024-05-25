@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../hooks/dispatchHook";
 import { useSelector } from "react-redux";
 import { RootState } from "../../main";
 import OTPForm from "../otp-verification/OTPForm";
+import signInSvg from '../../assets/meet_the_team.svg'
 import { Typography, TextField, Button } from "@mui/material";
 import "./Login.scss";
 
@@ -199,8 +200,10 @@ const Login = () => {
       <div className="overlay-container">
         <div className="overlay">
           <div className="overlay-panel overlay-left">
-            <Typography className="welcome-back">Feeling Deja Vu? Sign In To Revisit Your Social Kingdom!</Typography>
+            <Typography className="welcome-back">Feeling Deja Vu? Sign In</Typography>
+            <Typography className="welcome-back"> To Revisit Your Social Kingdom!</Typography>
             <Typography className="welcome-message">Keep Connected With Your Socio-Verse.</Typography>
+            <img src={signInSvg} className="sign-in-image"></img>
             <Button
               className="ghost"
               id="signIn"
