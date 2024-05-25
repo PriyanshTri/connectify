@@ -364,7 +364,7 @@ export const SampleArcsData = [
 
 export const GlobalConfigData = {
   pointSize: 4,
-  globeColor: "#062056",
+  globeColor: "#062088",
   showAtmosphere: true,
   atmosphereColor: "#FFFFFF",
   atmosphereAltitude: 0.1,

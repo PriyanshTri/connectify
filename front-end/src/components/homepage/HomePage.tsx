@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { World } from "../Globe/Globe.js";
-import {GlobalConfigData, SampleArcsData} from "../../constants/GlobeConstants/Globe.js";
-import CommonButton from "../common-button/CommonButton.tsx";
+import {
+  GlobalConfigData,
+  SampleArcsData,
+} from "../../constants/GlobeConstants/Globe.js";
 import "./HomePage.scss";
 import { Box, Container } from "@mui/material";
+
 const HomePage = () => {
   const navigate = useNavigate();
 
@@ -11,7 +14,6 @@ const HomePage = () => {
     <Container className="homepage">
       <Box className="globe-container">
         <World globeConfig={GlobalConfigData} data={SampleArcsData} />
-        <CommonButton children="Login"/>
       </Box>
     </Container>
   );
