@@ -7,7 +7,9 @@ import HomePage from "./components/homepage/HomePage";
 import PageNotFound from "./components/error-components/PageNotFound";
 import NavBar from "./components/navbar/NavBar";
 import ErrorFallback from "./components/errorboundary/ErrorFallback";
+import  Loader from "./components/loader/Loader";
 import "./App.scss";
+import { useState } from "react";
 
 function App() {
   const isAuthenticated = true; // Simulate authentication state
@@ -15,14 +17,21 @@ function App() {
   const handleErrorReset = () => {
     history("/");
   };
-
+  const [loading, setLoading] = useState(false);
+  const handleLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
   return (
     <div className="app">
+      <Loader loading={loading} />
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
         onReset={handleErrorReset}
       >
-        <NavBar />
+        <NavBar handleLoading={handleLoading}/>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Login />} />

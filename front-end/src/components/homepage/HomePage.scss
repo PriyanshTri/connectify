@@ -1,7 +1,43 @@
 .homepage {
     position: relative;
-    top: 0vh;
+    top: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .MuiBox-root {
-        height: 40vh;
+        height: 66vh;
+    }
+
+    .Homepage-title-box {
+        height: 20vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 25px;
+
+        .homepage-text {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #b0adff;
+
+            h3, .typed-cursor {
+                font-size: 2.2vw;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .image-3d-tile {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+        justify-content: center;
+        align-items: center;
     }
 }
