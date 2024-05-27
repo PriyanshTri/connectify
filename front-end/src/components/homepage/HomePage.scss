@@ -4,34 +4,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    scroll-snap-type: y mandatory;
 
-    .MuiBox-root {
-        height: 66vh;
-    }
-
-    .Homepage-title-box {
-        height: 20vh;
+    .globe-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 25px;
+        height: calc(100vh - 70px);
+        scroll-snap-align: start;
 
-        .homepage-text {
-            height: 80px;
+        .world {
+            height: 65vh !important;
+        }
+
+        .Homepage-title-box {
+            height: 20vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #b0adff;
+            margin: 25px;
 
-            h3, .typed-cursor {
-                font-size: 2.2vw;
-                font-weight: 500;
+            .homepage-text {
+                height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #b0adff;
+
+                h3,
+                .typed-cursor {
+                    font-size: 2.2vw;
+                    font-weight: 500;
+                }
             }
         }
     }
 
-    .image-3d-tile {
+    .image-3d-tile-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -39,5 +50,6 @@
         grid-row-gap: 20px;
         justify-content: center;
         align-items: center;
+        scroll-snap-align: start;
     }
 }

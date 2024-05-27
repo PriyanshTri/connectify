@@ -22,16 +22,20 @@ const HomePage = () => {
   return (
     <Container className="homepage">
       <Box className="globe-container">
-        <World globeConfig={GlobalConfigData} data={SampleArcsData} />
-      </Box>
-      <div className="Homepage-title-box">
-        <TypedComponent />
-        <CommonButton
-          title="Lets dive in!"
-          onClick={() => navigate("/login")}
+        <World
+          globeConfig={GlobalConfigData}
+          data={SampleArcsData}
+          clsName="world"
         />
-      </div>
-      <div className="image-3d-tile">
+        <div className="Homepage-title-box">
+          <TypedComponent />
+          <CommonButton
+            title="Lets dive in!"
+            onClick={() => navigate("/login")}
+          />
+        </div>
+      </Box>
+      <div className="image-3d-tile-container">
         <ThreeDCard
           imageUrl={message}
           imageAlt="message"
