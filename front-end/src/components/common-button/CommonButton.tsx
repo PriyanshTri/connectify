@@ -5,18 +5,20 @@ import "./CommonButton.scss";
 interface CommonButtonProps {
   title?: string;
   onClick?: () => void;
+  context?: string;
 }
 
-export default function Button({title, onClick} : CommonButtonProps) {
+export default function Button({ title, onClick, context }: CommonButtonProps) {
   return (
     <AwesomeButton
       type="primary"
+      className={`centralized-button ${context}`}
       onPress={() => {
         console.log("Button clicked");
         onClick && onClick();
       }}
     >
-      {title ?? "Lets dive in" }
+      {title ?? "Lets dive in"}
     </AwesomeButton>
   );
 }

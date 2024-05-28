@@ -1,9 +1,10 @@
 import {  useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../main';
-import CentralizedButton from '../centralized-button/CentralizedButton';
+import { useNavigate } from "react-router";
+
+import { RootState } from '@/main';
+import CommonButton from '../common-button/CommonButton';
 import './OTPForm.scss';
-import { useNavigate } from 'react-router';
 
 export type  OTPFormProps = {
   setSignUpComplete:(_:boolean) => void;
@@ -76,11 +77,11 @@ const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
     <div className="otp-form">
       <div className="title">
         <h3>OTP VERIFICATION</h3>
-        <p className="info">An otp has been sent to {userData?.email.replace(/.(?=.{4})/g, '*')}</p>
+        <p className="info">An otp has been sent to {userData?.email?.replace(/.(?=.{4})/g, '*')}</p>
         <p className="msg">Please enter OTP to verify</p>
       </div>
       <div className="otp-input-fields">{renderOTPFields()}</div>
-      <CentralizedButton buttonText={'Validate OTP'} context='otp-verify-button' onClick={renderResult}/>
+      <CommonButton title={'Validate OTP'} context='otp-verify-button' onClick={renderResult}/>
       <div className='user-message'>{message !== '' ? message : ''}</div>    
     </div>
   );

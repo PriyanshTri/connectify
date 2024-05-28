@@ -3,7 +3,7 @@ import { World } from "../globe/Globe.js";
 import {
   GlobalConfigData,
   SampleArcsData,
-} from "../../constants/globe-constants/Globe.js";
+} from "@/constants/globe-constants/Globe.js";
 import { Box, Container } from "@mui/material";
 import CommonButton from "../common-button/CommonButton.js";
 import TypedComponent from "./TypedComponent.js";

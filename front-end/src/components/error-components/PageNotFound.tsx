@@ -1,37 +1,33 @@
-import { Button, Container, Typography, Box, Stack } from "@mui/material";
-import { Link } from "react-router-dom";
-import LostAstronaut from "../../assets/lost-astronaut.svg";
+import { Container, Typography, Box } from "@mui/material";
+import LostAstronaut from "@/assets/lost-astronaut.svg";
+import "./PageNotFound.scss";
+import CommonButton from "@/components/common-button/CommonButton";
+import { useNavigate } from "react-router";
 
 const PageNotFound = () => {
+  const navigateTo = useNavigate();
+  const handleClick = () => {
+    navigateTo("/");
+  };
+
   return (
-    <Container
-      maxWidth="lg"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Container className="error-container">
+      <Box className="image-container">
         <img
           src={LostAstronaut}
           alt="Lost astronaut"
-          style={{ height: 200, filter: "" }}
+          className="lost-astronaut-image"
         />
       </Box>
-      <Typography variant="h3" component="h1" sx={{ mb: 3 }}>
+      <Typography variant="h3" component="h1">
         Whoops! Looks like you're lost in space.
       </Typography>
 
-      <Typography variant="body1" sx={{ mt: 3 }}>
+      <Typography variant="body1">
         The page you requested was not found. It might be unavailable or you
         might have typed the address incorrectly.
       </Typography>
-      <Stack direction="row" sx={{ mt: 3 }}>
-        <Button variant="contained" component={Link} to="/">
-          Go Back To Earth
-        </Button>
-      </Stack>
+      <CommonButton onClick={handleClick} title="Lets go back to earth"/>
     </Container>
   );
 };

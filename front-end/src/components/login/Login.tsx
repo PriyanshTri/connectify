@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
-import { generateOTPForEmails, loginUser, registerUser, validateUserNameAndEmail } from "../../store/user/userActions";
-import { useAppDispatch } from "../../hooks/dispatchHook";
+import { generateOTPForEmails, loginUser, registerUser, validateUserNameAndEmail } from "@/store/user/userActions";
+import { useAppDispatch } from "@/hooks/dispatchHook";
 import { useSelector } from "react-redux";
-import { RootState } from "../../main";
+import { RootState } from "@/main";
 import OTPForm from "../otp-verification/OTPForm";
 import signInSvg from '../../assets/meet_the_team.svg'
 import { Typography, TextField, Button } from "@mui/material";
@@ -22,7 +22,7 @@ const Login = () => {
     password: "",
   });
 
-  //To accomodate user data while login.
+  //To accommodate user data while login.
   const [loginData, setLoginData] = useState({
     email: "",
     username: "",

@@ -12,7 +12,7 @@ import {
   EMAIL_VALIDATION_SUCCESS,
   EMAIL_VALIDATION_REJECT,
 } from "./userTypes"; 
-import { userAPI } from "../../api/user-api";
+import { userAPI } from "@/api/user-api";
 
 export const registerUser = (data: any) => async (dispatch: any) => {
   dispatch({ type: USER_REGISTERED_REQUEST });
