@@ -40,43 +40,29 @@ const HomePage = () => {
           imageUrl={message}
           imageAlt="message"
           clickHandler={navigateToLogin}
-          aboveText="lets gooooo!"
-          belowText="i dont know what to write but let me make it a long text by writing random shitty texts"
+          aboveText="Feeling Like A Social Media Juggling Act?"
+          belowText="Don't Drop The Ball (Or Your Sanity)! Manage All Your Social Accounts From One Central Hub. Post, Schedule, And Receive Notifications - All In One Place"
         />
         <ThreeDCard
           imageUrl={message}
           imageAlt="message"
           clickHandler={navigateToLogin}
-          aboveText="lets gooooo!"
-          belowText="i dont know what to write but let me make it a long text by writing random shitty texts"
+          aboveText="Become A Social Media Superhero!"
+          belowText="Stop Struggling With Multiple Logins And Endless Scrolling. Be The Hero Your Audience Needs. Post Consistently, Engage Effortlessly, And Dominate The Social Media World!"
         />
         <ThreeDCard
           imageUrl={message}
           imageAlt="message"
           clickHandler={navigateToLogin}
-          aboveText="lets gooooo!"
-          belowText="i dont know what to write but let me make it a long text by writing random shitty texts"
+          aboveText="Stop the Social Media FOMO! "
+          belowText="Ditch The Constant App-Switching And Information Overload. Manage All Your Notifications In One Place."
         />
         <ThreeDCard
           imageUrl={message}
           imageAlt="message"
           clickHandler={navigateToLogin}
-          aboveText="lets gooooo!"
-          belowText="i dont know what to write but let me make it a long text by writing random shitty texts"
-        />
-        <ThreeDCard
-          imageUrl={message}
-          imageAlt="message"
-          clickHandler={navigateToLogin}
-          aboveText="lets gooooo!"
-          belowText="i dont know what to write but let me make it a long text by writing random shitty texts"
-        />
-        <ThreeDCard
-          imageUrl={message}
-          imageAlt="message"
-          clickHandler={navigateToLogin}
-          aboveText="lets gooooo!"
-          belowText="i dont know what to write but let me make it a long text by writing random shitty texts"
+          aboveText="Be a Social Media Maestro!"
+          belowText="Play All The Right Notes With Our All-In-One Platform. Schedule Content, Analyze Engagement, And Make Beautiful Music (Metaphorically) Across All Your Social Channels."
         />
       </div>
     </Container>

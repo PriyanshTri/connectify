@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { CardBody, CardContainer, CardItem } from "./CardContainer";
 import "./ThreeDCard.scss";
 interface ThreeDCCardProps {
@@ -26,18 +27,18 @@ export function ThreeDCard({
             alt={imageAlt}
           />
         </CardItem>
-        <div className="">
-          <CardItem translateZ="50" className="">
+        <div className="card-body">
+          <CardItem translateZ="50" className="card-header">
             {aboveText}
           </CardItem>
           <CardItem
             as="p"
             translateZ="60"
-            className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+            className="card-content"
           >
             {belowText}
           </CardItem>
-          <CardItem
+          {/* <CardItem
             translateZ={20}
             as={"div"}
             onClick={clickHandler}
@@ -48,7 +49,7 @@ export function ThreeDCard({
           </CardItem>
           <CardItem translateZ={20} as="button" className="">
             Lets go
-          </CardItem>
+          </CardItem> */}
         </div>
       </CardBody>
     </CardContainer>

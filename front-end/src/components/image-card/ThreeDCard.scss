@@ -6,15 +6,21 @@
     flex-wrap: wrap;
     row-gap: 20px;
     width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
 
-    .card-container {
-        width: 40vw;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        background: rgba(255, 255, 255, 0.25) !important;
-        -webkit-backdrop-filter: blur(4px);
-        backdrop-filter: blur(4px);
-        box-shadow: unset !important;
-    }
+.card-body {
+    font-size: 27px;
+    font-weight: 600;
+    color: black;
+    
+}
+
+.card-container {
+    background: linear-gradient(to top left, #897eff, #e8e7ff) no-repeat 0 0 / cover; 
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 20px;
+  text-align: center;
 }
