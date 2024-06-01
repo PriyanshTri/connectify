@@ -63,7 +63,16 @@ const HomePage = () => {
           paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
         />
       </div>
+      <Footer/>
     </Container>
+  );
+};
+
+const Footer = () => {
+  return (
+    <div className="footer-container">
+      Connectify | &copy; 2024 All rights reserved!
+    </div>
   );
 };
 

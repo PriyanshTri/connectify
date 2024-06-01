@@ -5,6 +5,8 @@
     justify-content: center;
     align-items: center;
     scroll-snap-type: y mandatory;
+    max-width: unset !important;
+    padding: unset !important;
 
     .globe-container {
         display: flex;
@@ -51,5 +53,13 @@
         justify-content: center;
         align-items: center;
         scroll-snap-align: start;
+    }
+    .footer-container {
+        margin-top: 50px;
+        background: #f2f2ff !important;
+        backdrop-filter: blur(4px);
+        box-shadow: unset !important;
+        text-align: center;
+        padding: 30px 0;
     }
 }
