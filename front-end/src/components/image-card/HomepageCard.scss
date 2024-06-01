@@ -40,7 +40,7 @@
 .box-container {
     position: relative;
     z-index: 11;
-    margin:20px;
+    margin: 20px;
     padding: 20px;
     width: 300px;
     height: 390px;
@@ -49,6 +49,8 @@
     border-radius: 20px;
     transition-duration: 700ms;
     overflow: hidden;
+    border: 1px solid rgba(176, 173, 255);
+    box-shadow: 6px 7px 13px -7px rgba(176, 173, 255, 0.4);
 }
 
 .box-container:hover {
