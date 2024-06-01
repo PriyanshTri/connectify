@@ -79,7 +79,7 @@ const Login = () => {
     }
   }, [userData]);
 
-  //If the user is valid , naviagate it to main screen page
+  //If the user is valid , navigate it to main screen page
   useEffect(() => {
     if (loginUserData && loginUserData?.['accessToken']) {
       navigate('/home') //NOTE - Currently route is not decided for main UI page. It's just for checking.

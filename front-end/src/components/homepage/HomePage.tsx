@@ -1,5 +1,9 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { World } from "../globe/Globe.js";
+// implemented lazy loading on World component
+const World = React.lazy(() =>
+  import("../globe/Globe.js").then((module) => ({ default: module.default })),
+);
 import {
   GlobalConfigData,
   SampleArcsData,
@@ -63,7 +67,7 @@ const HomePage = () => {
           paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
         />
       </div>
-      <Footer/>
+      <Footer />
     </Container>
   );
 };

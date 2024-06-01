@@ -11,8 +11,6 @@ function AppAppBar({handleLoading}: {handleLoading: () => void}){
   const navigateTo = useNavigate();
 
   const handleErrorThrow = async () => {
-    handleLoading();
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     navigateTo("/");
   };
 
