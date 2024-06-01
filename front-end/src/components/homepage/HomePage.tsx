@@ -7,17 +7,13 @@ import {
 import { Box, Container } from "@mui/material";
 import CommonButton from "../common-button/CommonButton.js";
 import TypedComponent from "./TypedComponent.js";
+import message from "./../../assets/message.svg";
+import HomepageCard from "../image-card/HomepageCard.js";
 
 import "./HomePage.scss";
-import { ThreeDCard } from "../image-card/ThreeDCard.js";
-import message from "./../../assets/message.svg";
 
 const HomePage = () => {
   const navigate = useNavigate();
-
-  const navigateToLogin = () => {
-    navigate("/login");
-  };
 
   return (
     <Container className="homepage">
@@ -36,33 +32,35 @@ const HomePage = () => {
         </div>
       </Box>
       <div className="image-3d-tile-container">
-        <ThreeDCard
-          imageUrl={message}
-          imageAlt="message"
-          clickHandler={navigateToLogin}
-          aboveText="Feeling Like A Social Media Juggling Act?"
-          belowText="Don't Drop The Ball (Or Your Sanity)! Manage All Your Social Accounts From One Central Hub. Post, Schedule, And Receive Notifications - All In One Place"
+        <HomepageCard
+          title="Connect social Media"
+          url={message}
+          paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
         />
-        <ThreeDCard
-          imageUrl={message}
-          imageAlt="message"
-          clickHandler={navigateToLogin}
-          aboveText="Become A Social Media Superhero!"
-          belowText="Stop Struggling With Multiple Logins And Endless Scrolling. Be The Hero Your Audience Needs. Post Consistently, Engage Effortlessly, And Dominate The Social Media World!"
+        <HomepageCard
+          title="Connect social Media"
+          url={message}
+          paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
         />
-        <ThreeDCard
-          imageUrl={message}
-          imageAlt="message"
-          clickHandler={navigateToLogin}
-          aboveText="Stop the Social Media FOMO! "
-          belowText="Ditch The Constant App-Switching And Information Overload. Manage All Your Notifications In One Place."
+        <HomepageCard
+          title="Connect social Media"
+          url={message}
+          paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
         />
-        <ThreeDCard
-          imageUrl={message}
-          imageAlt="message"
-          clickHandler={navigateToLogin}
-          aboveText="Be a Social Media Maestro!"
-          belowText="Play All The Right Notes With Our All-In-One Platform. Schedule Content, Analyze Engagement, And Make Beautiful Music (Metaphorically) Across All Your Social Channels."
+        <HomepageCard
+          title="Connect social Media"
+          url={message}
+          paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
+        />
+        <HomepageCard
+          title="Connect social Media"
+          url={message}
+          paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
+        />
+        <HomepageCard
+          title="Connect social Media"
+          url={message}
+          paragraph="you can connect all your social media account together but just a touch of a button. This gives you immense power."
         />
       </div>
     </Container>
