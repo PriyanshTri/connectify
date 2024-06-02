@@ -2,6 +2,8 @@ import expressAsyncHandler from 'express-async-handler'
 import nodemailer from 'nodemailer';
 import dotenv from "dotenv";
 import { generateOTP } from '../services/otp.service.js';
+import { generateTokens } from '../utils/user.utils.js';
+
 
 //To access .env variables.
 dotenv.config();
@@ -18,8 +20,8 @@ let transporter = nodemailer.createTransport({
 
 export const sendEmail = expressAsyncHandler(async (req, res) => {
   const { email, username } = req.body;
-  if(!email) {
-    return res.status(404).json({message: 'Invalid Email!'})
+  if (!email) {
+    return res.status(404).json({ message: 'Invalid Email!' });
   }
 
   const otp = generateOTP();
@@ -52,11 +54,17 @@ export const sendEmail = expressAsyncHandler(async (req, res) => {
     `
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
+  transporter.sendMail(mailOptions, async function (error, info) {
     if (error) {
       console.log(error);
     } else {
-      res.status(200).json({otp:otp});
+      if (!username) {
+        const accessToken =  await generateTokens(email)
+        console.log(accessToken)
+        res.status(200).json({ otp: otp, accessToken: accessToken });
+      }else {
+        res.status(200).json({ otp: otp });
+      }     
     }
   });
 });

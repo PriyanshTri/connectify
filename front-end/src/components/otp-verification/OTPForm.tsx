@@ -13,7 +13,7 @@ export type  OTPFormProps = {
   context?: string;
 }
 
-const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
+const OTPForm = ({setSignUpComplete, setIsSignUp, context} : OTPFormProps) => {
   const [otps, setOTP] = useState(['', '', '', '', '', '']);
   const [message, setMessage] = useState<string>('')
   const emailRefs = useRef([]);
@@ -65,10 +65,13 @@ const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (message?.includes('Successfully verified')) {
+      if (message?.includes('Successfully verified') && context !== 'password-reset') {
         setSignUpComplete?.(false);
         navigate('/login');
         setIsSignUp?.(false);
+      }
+      else if(message?.includes('Successfully verified') && context === 'password-reset') {
+        navigate('/reset_Password')
       }
     }, 1500);
   

@@ -40,3 +40,21 @@ const generateRefreshToken = (currentUser) => {
     }
   );
 };
+
+
+export const generateTokens = async (email) => {
+  try {
+    const currentUser = await user.findOne({ email });
+    if (!currentUser) {
+      throw new Error("User not found");
+    }
+
+    const { accessToken } = await generateAccessAndRefereshTokens(
+      currentUser._id
+    );
+
+    return accessToken;
+  } catch (error) {
+    throw error;
+  }
+}
