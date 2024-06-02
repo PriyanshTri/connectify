@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import { generateOTPForEmails, loginUser, registerUser, validateUserNameAndEmail } from "@/store/user/userActions";
@@ -193,6 +193,7 @@ const Login = () => {
               onChange={handleLoginData}
               type="password"
             />
+              <Link to="/forgot-password" className="forgot-password-text">Forgot Your Password?</Link>
             <Button type="submit" variant="contained" className="sign-in-button">Connectify Now</Button>
         </form>
       </div>

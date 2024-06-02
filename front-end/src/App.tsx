@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
@@ -8,8 +9,8 @@ import PageNotFound from "./components/error-components/PageNotFound";
 import NavBar from "./components/navbar/NavBar";
 import ErrorFallback from "./components/errorboundary/ErrorFallback";
 import Loader from "./components/loader/Loader";
+import ForgotPassword from "./components/forgot-password/ForgotPassword";
 import "./App.scss";
-import { Suspense, useState } from "react";
 
 function App() {
   const isAuthenticated = true; // Simulate authentication state
@@ -42,6 +43,7 @@ function App() {
               }
             />
             <Route path="*" element={<PageNotFound />} />
+            <Route path="/forgot-password" element={<ForgotPassword/>} />
           </Routes>
         </ErrorBoundary>
       </div>

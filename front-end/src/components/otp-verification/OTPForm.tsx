@@ -5,10 +5,12 @@ import { useNavigate } from "react-router";
 import { RootState } from '@/main';
 import CommonButton from '../common-button/CommonButton';
 import './OTPForm.scss';
+import { Button } from '@mui/material';
 
 export type  OTPFormProps = {
-  setSignUpComplete:(_:boolean) => void;
-  setIsSignUp:(_:boolean) => void;
+  setSignUpComplete?:(_:boolean) => void;
+  setIsSignUp?:(_:boolean) => void;
+  context?: string;
 }
 
 const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
@@ -64,9 +66,9 @@ const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (message?.includes('Successfully verified')) {
-        setSignUpComplete(false);
+        setSignUpComplete?.(false);
         navigate('/login');
-        setIsSignUp(false);
+        setIsSignUp?.(false);
       }
     }, 1500);
   
@@ -81,7 +83,7 @@ const OTPForm = ({setSignUpComplete, setIsSignUp} : OTPFormProps) => {
         <p className="msg">Please enter OTP to verify</p>
       </div>
       <div className="otp-input-fields">{renderOTPFields()}</div>
-      <CommonButton title={'Validate OTP'} context='otp-verify-button' onClick={renderResult}/>
+      <Button onClick={renderResult}>Validate OTP</Button>
       <div className='user-message'>{message !== '' ? message : ''}</div>    
     </div>
   );
