@@ -70,8 +70,8 @@ const OTPForm = ({setSignUpComplete, setIsSignUp, context} : OTPFormProps) => {
         navigate('/login');
         setIsSignUp?.(false);
       }
-      else if(message?.includes('Successfully verified') && context === 'password-reset') {
-        navigate('/reset_Password')
+      else if(message?.includes('Successfully verified') &&context === 'password-reset') {
+        setIsSignUp?.(true);
       }
     }, 1500);
   

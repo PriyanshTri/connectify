@@ -5,10 +5,12 @@ import { generateOTPForEmails } from "@/store/user/userActions";
 import { useAppDispatch } from "@/hooks/dispatchHook";
 import './ForgotPassword.scss'
 import OTPForm from "../otp-verification/OTPForm";
+import ResetPassword from "../reset-password/ResetPassword";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-	const [otpsent, setOtpSent] = useState(false);
+  const [email, setEmail] = useState<string>("");
+	const [otpsent, setOtpSent] = useState<boolean>(false);
+  const [resetPasswordPage, setResetPasswordPage] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
   const handleEmailChange = (e) => {
@@ -45,10 +47,9 @@ const ForgotPassword = () => {
           Send OTP
         </Button>
 				<p className="reset-footer">By Clicking on Send Button.You are allowing to our <Link to='' >privacy policy.</Link></p>
-      </form>
-			
-    </div>:
-		 <OTPForm context="password-reset"/>
+      </form>		
+    </div> : resetPasswordPage ?  (<ResetPassword email={email}/> ) :
+		 <OTPForm context="password-reset" setIsSignUp={setResetPasswordPage}/>
   );
 };
 

@@ -3,8 +3,9 @@ import { TextField, Button, Typography, Container, IconButton, InputAdornment } 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import './ResetPassword.scss'; // Import SCSS file for styling
+import { userAPI } from '@/api/user-api';
 
-const ResetPassword = () => {
+const ResetPassword = (email) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -28,15 +29,16 @@ const ResetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Password reset logic here
+   	userAPI.resetPassword({email:email, password: confirmPassword })
     console.log('Password reset successful');
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className="form-container">
-        <Typography component="h1" variant="h5">
-          Reset Password
+      <div className="reset-password-container">
+        <Typography className='title'>
+          This is Final Step. We promise  
+					<span role="img" aria-label="laughing emoji">😂</span>
         </Typography>
         <form onSubmit={handleSubmit} className="form">
           <TextField
@@ -46,7 +48,7 @@ const ResetPassword = () => {
             fullWidth
             name="password"
             label="New Password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="new-password"
             value={password}
@@ -68,7 +70,7 @@ const ResetPassword = () => {
             fullWidth
             name="confirmPassword"
             label="Confirm New Password"
-            type={showConfirmPassword ? 'text' : 'password'}
+            type={showConfirmPassword ? "text" : "password"}
             id="confirmPassword"
             autoComplete="new-password"
             value={confirmPassword}
@@ -77,7 +79,11 @@ const ResetPassword = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleShowConfirmPassword}>
-                    {showConfirmPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    {showConfirmPassword ? (
+                      <VisibilityOffIcon />
+                    ) : (
+                      <VisibilityIcon />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),

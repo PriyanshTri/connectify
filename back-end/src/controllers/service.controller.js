@@ -1,13 +1,14 @@
 import expressAsyncHandler from 'express-async-handler'
 import nodemailer from 'nodemailer';
 import dotenv from "dotenv";
+import express from 'express'
 import { generateOTP } from '../services/otp.service.js';
+import cookieparser from 'cookie-parser';
 import { generateTokens } from '../utils/user.utils.js';
 
 
 //To access .env variables.
 dotenv.config();
-
 let transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
@@ -60,7 +61,12 @@ export const sendEmail = expressAsyncHandler(async (req, res) => {
     } else {
       if (!username) {
         const accessToken =  await generateTokens(email)
-        console.log(accessToken)
+        const options = {
+          httpOnly: true,
+          secure: false,
+          domain: 'localhost'
+        };
+        res.cookie('accessToken', accessToken, options);
         res.status(200).json({ otp: otp, accessToken: accessToken });
       }else {
         res.status(200).json({ otp: otp });

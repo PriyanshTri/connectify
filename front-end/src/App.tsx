@@ -11,6 +11,7 @@ import ErrorFallback from "./components/errorboundary/ErrorFallback";
 import Loader from "./components/loader/Loader";
 import ForgotPassword from "./components/forgot-password/ForgotPassword";
 import "./App.scss";
+import ResetPassword from "./components/reset-password/ResetPassword";
 
 function App() {
   const isAuthenticated = true; // Simulate authentication state

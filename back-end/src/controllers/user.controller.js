@@ -106,3 +106,28 @@ export const loginUser = async (req, res) => {
   }
 };
 
+export const resetPassword = async(req, res) => {
+  const {email, password} = req.body;
+
+  if(!password) {
+    res.status(401).json({message: 'Invalid Credentials.'})
+  }
+  try {
+    const existingUser = await user.findOne({ email });
+
+    if(!existingUser){
+      res.status(404).json({message: 'User not found.'})
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await user.findOneAndUpdate(
+      { _id: user._id },
+      { $set: { password: hashedPassword } }
+    );
+  }
+  catch {
+    res.status(500).json({message: 'Server Error.'})
+  }
+
+}
+

@@ -15,14 +15,19 @@ dotenv.config({
   path: "./.env",
 });
 
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
+
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieparser());
 app.use(bodyParser.json());
 
 //safe routes
 
 app.use('/api/v1/users', userRouter) //userRoutes(register or login)
-app.post('/api/v1/signup-verification', sendEmail) 
+app.post('/api/v1/users/signup-verification', sendEmail) 
 app.post('/api/v1/users/userValidation', ifUserNameExists) //Calling Controller without routes to avoid redudnat routes.
 export { app };
