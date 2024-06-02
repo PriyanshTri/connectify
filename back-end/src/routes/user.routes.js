@@ -6,6 +6,6 @@ import { verifyAccessToken } from "../middlewares/auth.middleware.js";
 const router = Router();
 router.route('/signup').post(registerUser);
 router.route('/login').post(loginUser);
-router.route('/forgot-password').post(resetPassword);
+router.route('/forgot-password').post(verifyAccessToken, resetPassword);
 
 export default router;
