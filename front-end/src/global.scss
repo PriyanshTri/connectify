@@ -3,6 +3,28 @@
     scroll-behavior: smooth;
 }
 
+:root {
+    // light mode colors 
+    --background-light: #f2f2ff;
+    /* background color */
+    --color-0-100: #e8e7ff;
+    /* Very light shade */
+    --color-0-200: #d2d1ff;
+    /* Light shade */
+    --color-0-300: #b0adff;
+    /* Light-medium shade */
+    --light-primary-purple: #897eff;
+    /* light primary color */
+    --color-0-500: #634bff;
+    --color-0-600: #4f26ff;
+    --color-0-700: #4114ed;
+    --color-0-800: #3610c7;
+    --color-0-900: #2e0fa3;
+    /* border color */
+    --text-color-primery: #130557;
+    /* primary text color */
+}
+
 ::-webkit-scrollbar {
     width: 11px;
 }

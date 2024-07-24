@@ -4,10 +4,10 @@ import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router";
 
 // @ts-ignore
-import ConnectifyLogo from "../../assets/Connectify-logo.png"
+import ConnectifyLogo from "../../assets/connectify-logo.png"
 import "./NavBar.scss";
 
-function AppAppBar({handleLoading}: {handleLoading: () => void}){
+function AppAppBar({ handleLoading }: { handleLoading: () => void }) {
   const navigateTo = useNavigate();
 
   const handleErrorThrow = async () => {
